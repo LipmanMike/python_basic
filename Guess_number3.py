@@ -4,6 +4,7 @@
 Добавил выбор уровня сложности
 Добавил выбоор игроков
 Открректировал правильность подсчета попыток.
+Добавил объявление победителя
 """
 import random
 number = random.randint(1, 100)
@@ -20,30 +21,33 @@ for user in range(user_count):
     user_name = input(f'Введите имя игрока {user+1}: ') #использовал {user+1} для отображения игрок 1 а не 0
     users.append(user_name)
 print(users)
+is_winner = False
+winner_name = None
 
-
-while user_answer != number:
+while not is_winner:
     count += 1
     left_count = (max_count - count)
 
     try:
         print(f'Попытка № {count}')
-        user_answer = int(input('Угадайте число:\n '))
+        for user in users:
+            print(f'Ход пользователя {user}')
+            user_answer = int(input('Угадайте число:\n '))
+            if user_answer == number:
+                is_winner = True
+                winner_name = user
+                break
+            elif count == max_count:
+                print(f'Попытки закончились. Все проиграли. Правильное число {number}')
+                break
+            elif user_answer > number:
+                print('Слишком большое число\n')
+            else:
+                print('Слишком маленькое число\n')
+            print(f'Осталось попыток : {left_count}\n')
     except ValueError:
         print('Нужно ввести число')
         continue
 
-
-    if count == max_count:
-        print(f'Попытки закончились. Вы проиграли. Правильное число {number}')
-        break
-
-    elif user_answer > number:
-        print('Слишком большое число\n')
-
-    elif user_answer < number:
-        print('Слишком маленькое число\n')
-
-    print(f'Осталось попыток : {left_count}\n')
 else:
-    print('Поздравляю, вы угадали')
+    print(f'Поздравляю, вы угадали. Победитель {winner_name}')
