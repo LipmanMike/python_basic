@@ -3,6 +3,7 @@
 Также добавил конструкцию try exception если пользователь введет не число
 Добавил выбор уровня сложности
 Добавил выбоор игроков
+Открректировал правильность подсчета попыток
 """
 import random
 number = random.randint(1, 100)
@@ -22,13 +23,16 @@ print(users)
 
 
 while user_answer != number:
+    count += 1
+    left_count = (max_count - count)
+
     try:
+        print(f'Попытка № {count}')
         user_answer = int(input('Угадайте число:\n '))
     except ValueError:
         print('Нужно ввести число')
         continue
-    count += 1
-    left_count = (max_count - count)
+
 
     if count == max_count:
         print(f'Попытки закончились. Вы проиграли. Правильное число {number}')
