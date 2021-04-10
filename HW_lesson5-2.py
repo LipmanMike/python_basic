@@ -4,7 +4,7 @@
 Склонением пренебречь (2000 года, 2010 года)
 """
 
-date = '09.05.2013'
+date = '09.04.2021'
 
 d, m, y = date.split('.')
 
@@ -36,4 +36,6 @@ month = {
     '11': 'November',
     '12': 'December'
 }
-print(f'{day[d]} {month[m]} 2013 year')
+
+result = (f'{day[d]} {month[m]} {y} year')
+print(result)
