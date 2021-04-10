@@ -12,7 +12,7 @@ while user_answer != number:
     count += 1
     left_count = (max_count - count)
 
-    if count == max_count:
+    if count > max_count:
         print(f'Попытки закончились. Вы проиграли. Правильное число {number}')
         break
 
